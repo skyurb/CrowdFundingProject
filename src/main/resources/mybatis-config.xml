@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!--将下划线命名的字段映射成驼峰法命名-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="localCacheScope" value="STATEMENT"></setting>
+        <setting name="logImpl" value="SLF4J"></setting>
+    </settings>
+
+    <typeAliases>
+        <!--<typeAlias type="com.com.zhiyou100.Person" alias="Person"></typeAlias>-->
+    </typeAliases>
+    <!--环境表示连接  可以配置多个-->
+   <!-- <environments default="test">
+
+        <environment id="development">
+            &lt;!&ndash;transactionManager 表示事务管理器  默认使用jdbc&ndash;&gt;
+            <transactionManager type="JDBC"/>
+            &lt;!&ndash;POOLED 启用连接池  unpooled 不用连接池&ndash;&gt;
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+
+        <environment id="test">
+            &lt;!&ndash;transactionManager 表示事务管理器  默认使用jdbc&ndash;&gt;
+            <transactionManager type="JDBC"/>
+            &lt;!&ndash;POOLED 启用连接池  unpooled 不用连接池&ndash;&gt;
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+        <environment id="product">
+            &lt;!&ndash;transactionManager 表示事务管理器  默认使用jdbc&ndash;&gt;
+            <transactionManager type="JDBC"/>
+            &lt;!&ndash;POOLED 启用连接池  unpooled 不用连接池&ndash;&gt;
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+
+
+    </environments>-->
+
+
+    <mappers>
+
+    </mappers>
+
+</configuration>
