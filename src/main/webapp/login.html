@@ -37,10 +37,14 @@ function login() {
           dataType:"json",
           success:function (resp) {
               console.log(resp)
-              window.location.href="/user.html"
-          },
-          error:function (resp) {
-              console.log(resp)
+              if(resp['isSuccess']){
+                 var userId=JSON.parse(resp.content).usId
+                  window.location.href="/user.html?id="+userId;
+              }
+              else {
+                  console.log(resp.error)
+              }
+
           }
 
       })
