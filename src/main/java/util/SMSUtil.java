@@ -1,5 +1,6 @@
 package util;
 
+
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
 import com.aliyuncs.dysmsapi.model.v20170525.QuerySendDetailsRequest;
@@ -62,7 +63,7 @@ public class SMSUtil {
         return code;
     }
 
-    private static SendSmsResponse sendSms(String tel,String code) throws ClientException {
+    private static SendSmsResponse sendSms(String tel, String code) throws ClientException {
 
         //可自助调整超时时间
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
