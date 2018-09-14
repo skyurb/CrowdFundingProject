@@ -20,14 +20,16 @@
         <property name="suffix" value=".jsp"/>
     </bean>
     <!--配置拦截器-->
-    <mvc:interceptors>
+    <!--<mvc:interceptors>
     <mvc:interceptor>
-        <!--配置拦截器拦截路径-->
+        &lt;!&ndash;配置拦截器拦截路径&ndash;&gt;
         <mvc:mapping path="/**/*.do"/>
-        <!--配置拦截器非拦截路径-->
+        &lt;!&ndash;配置拦截器非拦截路径&ndash;&gt;
         <mvc:exclude-mapping path="/user/login.do"></mvc:exclude-mapping>
-        <!--配置加载的类-->
+        <mvc:exclude-mapping path="/register/register.do"></mvc:exclude-mapping>
+        <mvc:exclude-mapping path="/register/getCode.do"></mvc:exclude-mapping>
+        &lt;!&ndash;配置加载的类&ndash;&gt;
         <bean class="com.interceptor.LoginInterceptor"></bean>
     </mvc:interceptor>
-    </mvc:interceptors>
+    </mvc:interceptors>-->
 </beans>

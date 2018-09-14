@@ -26,8 +26,7 @@ public class SMSUtil {
     static final String accessKeySecret = "hnSMoKj41dhGZd64WVmXmN3G3Iv2wc";
 
 
-    public static String sendSMS(String tel) throws ClientException, InterruptedException {
-        String code = getCode();
+    public static String sendSMS(String tel,String code) throws ClientException, InterruptedException {
         SendSmsResponse response = sendSms(tel,code);
         System.out.println("短信接口返回的数据----------------");
         System.out.println("Code=" + response.getCode());
@@ -129,8 +128,6 @@ public class SMSUtil {
         return querySendDetailsResponse;
     }
 
-    private static String getCode(){
-        return String.valueOf(new Random().nextInt(899999) + 100000);
-    }
+
 }
 
