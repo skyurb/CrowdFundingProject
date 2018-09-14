@@ -8,8 +8,7 @@ function getCode() {
 
 
     $.ajax({
-
-        url: "/register/getCode",
+        url: "/register/getCode.do",
         type:"post",
         data:{
             phoneNumber:phone
