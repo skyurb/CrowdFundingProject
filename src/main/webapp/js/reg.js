@@ -17,10 +17,8 @@ function getCode() {
         },
         dataType:"json",
         success:function (resp) {
-            if (resp["res"]=="success") {
+            console.log(resp)
                 alert("发送成功")
-            }
-
         }
 
     })

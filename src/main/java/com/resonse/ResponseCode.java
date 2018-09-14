@@ -15,5 +15,9 @@ public class ResponseCode {
     public static final int LOGIN_ERROR_NULL_PARAMETER=1;
     //响应成功
     public static final int LOGIN_SUCCESS=2;
+    //验证码发送成功
+    public static final int SEND_SUCCESS=3;
+    //验证码不对应
+    public static final int CODE_IS_DIFFERENT=4;
 
 }

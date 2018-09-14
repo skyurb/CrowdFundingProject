@@ -1,19 +1,12 @@
 package com.util;
 
 
-import java.util.Properties;
+import com.sun.mail.util.MailSSLSocketFactory;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
-import com.sun.mail.util.MailSSLSocketFactory;
-
-
-
-
-
-
+import java.util.Properties;
 
 public class MailUtil implements Runnable {
 	private String email;// 收件人邮箱
@@ -28,8 +21,8 @@ public class MailUtil implements Runnable {
 		// 1.创建连接对象javax.mail.Session
 		// 2.创建邮件对象 javax.mail.Message
 		// 3.发送一封激活邮件
-		String from = "964770278@qq.com";// 发件人电子邮箱
-		String host = "smtp.qq.com(QQ)"; // 指定发送邮件的主机smtp.qq.com(QQ)|smtp.163.com(网易)
+		String from = "812814089@qq.com";// 发件人电子邮箱
+		String host = "smtp.qq.com"; // 指定发送邮件的主机smtp.qq.com(QQ)|smtp.163.com(网易)
 
 		Properties properties = System.getProperties();// 获取系统属性
 
@@ -47,7 +40,7 @@ public class MailUtil implements Runnable {
 			// 1.获取默认session对象
 			Session session = Session.getDefaultInstance(properties, new Authenticator() {
 				public PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("812814089@qq.com", "lr24172417."); // 发件人邮箱账号、授权码
+					return new PasswordAuthentication("812814089@qq.com", "beslfjljsomqbbjb"); // 发件人邮箱账号、授权码
 				}
 			});
 
@@ -60,9 +53,9 @@ public class MailUtil implements Runnable {
 			// 2.3设置邮件主题
 			message.setSubject("账号激活");
 			// 2.4设置邮件内容
-			String content = "<html><head></head><body><h1>这是一封激活邮件,激活请点击以下链接</h1><h3><a href='http://localhost:8071/RegisterDemo/ActiveServlet?active_code="
-					+ code + "'>http://localhost:8071/RegisterDemo/ActiveServlet?code=" + code
-					+ "</href></h3></body></html>";
+			String content = "<html><head></head><body><h1>嘿~~~~</h1><h3><a href='"
+					+ "'>这是你的验证码~："+ code
+					+ "</a></h3></body></html>";
 			message.setContent(content, "text/html;charset=UTF-8");
 			// 3.发送邮件
 			Transport.send(message);
