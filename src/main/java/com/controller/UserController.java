@@ -51,7 +51,7 @@ public class UserController {
                 List<User> users = userService.selectByPhoneAndPwd(username, password);
                 if (users.get(0)==null){
                     //用户名或密码错误
-                    ResponseUtil.responseFailure(response,"用户名或着密码错误",ResponseCode.LOGIN_ERROR_INVALID_PARAMETER);
+                    ResponseUtil.responseFailure(response,"用户名或者密码错误",ResponseCode.LOGIN_ERROR_INVALID_PARAMETER);
                     return;
                 }else {
                     //保存用户登陆信息到session
