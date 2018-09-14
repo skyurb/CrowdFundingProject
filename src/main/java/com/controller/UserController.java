@@ -2,9 +2,7 @@ package com.controller;
 
 import com.entity.User;
 import com.google.gson.Gson;
-import com.resonse.ResponseCode;
-import com.service.UserService;
-import com.util.ResponseUtil;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,42 +25,20 @@ public class UserController {
     public void checkLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        //校验
         if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
-            ResponseUtil.responseFailure(response, "用户名或密码为空", ResponseCode.LOGIN_ERROR_INVALID_PARAMETER);
-            return;
+            System.out.println("error");
         }
-        try {
-            if (checkEmail(username)) {
-                List<User> users = userService.selectByEnailAndPwd(username, password);
-                if (users.get(0)==null){
-                    //用户名或密码错误
-                    ResponseUtil.responseFailure(response,"用户名或密码错误",ResponseCode.LOGIN_ERROR_INVALID_PARAMETER);
-                    return;
-                }else {
-                    //保存用户登陆信息到session
-                    request.getSession().setAttribute("user",users.get(0));
-                    String s = new Gson().toJson(users.get(0));
-                    ResponseUtil.responseSuccess(response,s,ResponseCode.LOGIN_SUCCESS);
-                }
+        if (checkEmail(username)) {
+            List<User> users = userService.selectByEnailAndPwd(username, password);
+            String s = new Gson().toJson(users);
+            response.getWriter().print(s);
+        } else {
+            List<User> users = userService.selectByPhoneAndPwd(username, password);
+            String s = new Gson().toJson(users);
+            response.getWriter().print(s);
+        }
 
-            } else {
-                List<User> users = userService.selectByPhoneAndPwd(username, password);
-                if (users.get(0)==null){
-                    //用户名或密码错误
-                    ResponseUtil.responseFailure(response,"用户名或着密码错误",ResponseCode.LOGIN_ERROR_INVALID_PARAMETER);
-                    return;
-                }else {
-                    //保存用户登陆信息到session
-                    request.getSession().setAttribute("user",users.get(0));
-                    String ss = new Gson().toJson(users.get(0));
-                    ResponseUtil.responseSuccess(response,ss,ResponseCode.LOGIN_SUCCESS);
-                }
-            }
-        } catch (Exception e) {
-            ResponseUtil.responseFailure(response, "server error", ResponseCode.LOGIN_ERROR_INVALID_PARAMETER);
-            return;
-        }
+
     }
 
 

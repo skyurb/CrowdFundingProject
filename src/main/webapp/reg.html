@@ -57,21 +57,21 @@
                 <fieldset>
                     <label class="block clearfix">
 														<span class="block input-icon input-icon-left">
-															<input type="text" class="form-control" placeholder="邮箱或手机号码" />
+															<input id="phone" type="text" class="form-control" placeholder="邮箱或手机号码" />
 															<i class="ace-icon fa fa-envelope"></i>
 														</span>
                     </label>
 
                     <label class="block clearfix">
 														<span class="block input-icon input-icon-left">
-															<input type="text" class="form-control" placeholder="用户名" />
+															<input id="name" type="text" class="form-control" placeholder="用户名" />
 															<i class="ace-icon fa fa-user"></i>
 														</span>
                     </label>
 
                     <label class="block clearfix">
 														<span class="block input-icon input-icon-left">
-															<input type="password" class="form-control" placeholder="密码" />
+															<input id="password" type="password" class="form-control" placeholder="密码" />
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
                     </label>
@@ -85,8 +85,8 @@
                     <!--验证码-->
                     <label class="block clearfix">
 														<span>
-															<input type="text" class="" placeholder="验证码" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                            <button class="btn btn-default"><a>点击获取验证码</a></button>
+															<input id="code" type="text" class="" placeholder="验证码" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            <button class="btn btn-default" onclick="getCode()"><a>点击获取验证码</a></button>
 														</span>
                     </label>
                     <label class="block">
@@ -105,7 +105,7 @@
                             <span class="bigger-110">重置</span>
                         </button>
 
-                        <button type="button" class="width-65 pull-right btn btn-sm btn-success">
+                        <button type="button" class="width-65 pull-right btn btn-sm btn-success" onclick="register()">
                             <span class="bigger-110">注册</span>
 
                             <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
