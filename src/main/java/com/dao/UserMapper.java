@@ -20,7 +20,20 @@ public interface UserMapper {
 
     //根据手机号和密码获取用户
     List<User> selectByPhoneAndPwd(@Param("param1")String name, @Param("param2")String password);
+<<<<<<< HEAD
 
     //根据邮箱号和密码获取用户
     List<User> selectByEmailAndPwd(@Param("param1")String name, @Param("param2")String password);
 }
+=======
+    //根据邮箱号和密码获取用户
+    List<User> selectByEmailAndPwd(@Param("param1")String name, @Param("param2")String password);
+
+    //根据邮箱名查找用户
+    List<User> findByEmailName(String userName);
+
+    //根据电话号码查找用户
+    List<User> findByPhone(String userName);
+
+}
+>>>>>>> skyurb_dev
