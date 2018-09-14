@@ -26,7 +26,7 @@ public class registerController {
 
         code = GetCodeUtil.getCode();
 
-        MailUtil mailUtil = new MailUtil(account, code);
+        //MailUtil mailUtil = new MailUtil(account, code);
 
         System.out.println(account);
         registerController.code = SMSUtil.sendSMS(account,code);
