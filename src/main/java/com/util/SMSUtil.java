@@ -132,5 +132,6 @@ public class SMSUtil {
     private static String getCode(){
         return String.valueOf(new Random().nextInt(899999) + 100000);
     }
+
 }
 
