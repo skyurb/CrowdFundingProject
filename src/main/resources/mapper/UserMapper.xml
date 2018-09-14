@@ -200,5 +200,18 @@
     where us_email=#{param1} and us_password=#{param2}
   </select>
 
+  <select id="findByEmailName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from `user`
+    where us_email=#{userName}
+  </select>
+
+  <select id="findByPhone" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from `user`
+    where us_phone=#{userName}
+  </select>
 
 </mapper>

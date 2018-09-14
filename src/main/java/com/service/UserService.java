@@ -21,4 +21,14 @@ public class UserService {
         return users;
     }
 
+    public List<User> findByEmailName(String userName){
+        List<User> users = userMapper.findByEmailName(userName);
+        return users;
+    }
+
+    public List<User> findByPhone(String userName){
+        List<User> users = userMapper.findByPhone(userName);
+        return users;
+    }
+
 }
