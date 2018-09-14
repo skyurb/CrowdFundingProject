@@ -5,6 +5,8 @@ import com.aliyuncs.exceptions.ClientException;
 import com.entity.User;
 import com.resonse.ResponseCode;
 import com.service.UserService;
+import com.util.CodeUtil;
+import com.util.MailUtil;
 import com.util.ResponseUtil;
 import com.util.SMSUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,16 +41,22 @@ public class registerController {
             if (byEmailName.size() > 0) {
                 ResponseUtil.responseFailure(res, "账号已存在", ResponseCode.LOGIN_ERROR_INVALID_PARAMETER);
                 return;
+            }else {
+                code =CodeUtil.generateUniqueCode();
+                System.out.println(code);
+                new MailUtil(phoneNumber,code).run();
             }
         } else {
             List<User> byPhone = userService.findByPhone(phoneNumber);
             if (byPhone.size() > 0) {
                 ResponseUtil.responseFailure(res, "账号已存在", ResponseCode.LOGIN_ERROR_INVALID_PARAMETER);
                 return;
+            }else {
+                code = SMSUtil.sendSMS(phoneNumber);
             }
         }
         //System.out.println(phoneNumber);
-        code = SMSUtil.sendSMS(phoneNumber);
+
     }
 
     @RequestMapping("/register.do")
@@ -58,7 +67,7 @@ public class registerController {
         String password = req.getParameter("password");
         String reCode = req.getParameter("code");
         if (code != reCode) {
-            ResponseUtil.responseFailure(res, "验证码错误", ResponseCode.LOGIN_ERROR_INVALID_PARAMETER);
+            ResponseUtil.responseFailure(res, "验证码错误codeError", ResponseCode.LOGIN_ERROR_INVALID_PARAMETER);
             return;
         }
         //检查账号类型
@@ -88,5 +97,6 @@ public class registerController {
         Matcher m = p.matcher(username);
         return m.find();
     }
+
 
 }
