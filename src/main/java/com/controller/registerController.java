@@ -2,7 +2,7 @@ package com.controller;
 
 import com.aliyuncs.exceptions.ClientException;
 
-import com.util.GetCode;
+
 import com.util.GetCodeUtil;
 import com.util.MailUtil;
 import com.util.SMSUtil;
