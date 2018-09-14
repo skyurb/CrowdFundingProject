@@ -24,6 +24,28 @@
 		//不满足要求上网找特特效}
 	}
 }
+function login() {
+      var name=$("#name").val();
+      var password=$("#password").val();
+      $.ajax({
+          type:"post",
+          url:"/user/login.do",
+          data:{
+              username:name,
+              password:password
+          },
+          dataType:"json",
+          success:function (resp) {
+              console.log(resp)
+              window.location.href="/user.html"
+          },
+          error:function (resp) {
+              console.log(resp)
+          }
+
+      })
+
+}
 </script>
 <body>
 <div id="header">
@@ -84,7 +106,7 @@
                             <label class="block clearfix">
 														<span class="block input-icon input-icon-left">
                                                             <i class="ace-icon fa fa-user"></i>
-															<input type="text" class="form-control" placeholder="邮箱或手机号码" />
+															<input type="text" id="name" class="form-control" placeholder="邮箱或手机号码" />
 
 														</span>
                             </label>
@@ -92,7 +114,7 @@
                             <label class="block clearfix">
 														<span class="block input-icon input-icon-left">
                                                             <i class="ace-icon fa fa-lock"></i>
-															<input type="password" class="form-control" placeholder="请输入密码" />
+															<input type="password" id="password" class="form-control" placeholder="请输入密码" />
 
 														</span>
                             </label>
@@ -105,7 +127,7 @@
                                     <span class="lbl"> 记住</span>
                                 </label>
 
-                                <button type="button" class="width-35 pull-right btn btn-sm btn-primary">
+                                <button type="button" class="width-35 pull-right btn btn-sm btn-primary" onclick="login()">
                                     <i class="ace-icon fa fa-key"></i>
                                     <span class="bigger-110">登录</span>
                                 </button>

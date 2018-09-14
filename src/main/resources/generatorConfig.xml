@@ -14,7 +14,7 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/skyurb" userId="root"
+                        connectionURL="jdbc:mysql://localhost:3306/crowd_funding" userId="root"
                         password="2561"/>
 
         <javaModelGenerator targetPackage="com.entity"

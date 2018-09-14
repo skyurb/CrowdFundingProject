@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.User" >
+    <id column="us_id" property="usId" jdbcType="INTEGER" />
+    <result column="us_email" property="usEmail" jdbcType="VARCHAR" />
+    <result column="us_name" property="usName" jdbcType="VARCHAR" />
+    <result column="us_password" property="usPassword" jdbcType="VARCHAR" />
+    <result column="us_money" property="usMoney" jdbcType="DECIMAL" />
+    <result column="us_idcard" property="usIdcard" jdbcType="VARCHAR" />
+    <result column="us_phone" property="usPhone" jdbcType="VARCHAR" />
+    <result column="us_address" property="usAddress" jdbcType="VARCHAR" />
+    <result column="us_role" property="usRole" jdbcType="INTEGER" />
+    <result column="us_sex" property="usSex" jdbcType="VARCHAR" />
+    <result column="us_code" property="usCode" jdbcType="VARCHAR" />
+    <result column="us_create_time" property="usCreateTime" jdbcType="TIMESTAMP" />
+    <result column="us_update_time" property="usUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    us_id, us_email, us_name, us_password, us_money, us_idcard, us_phone, us_address, 
+    us_role, us_sex, us_code, us_create_time, us_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where us_id = #{usId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where us_id = #{usId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.User" >
+    insert into user (us_id, us_email, us_name, 
+      us_password, us_money, us_idcard, 
+      us_phone, us_address, us_role, 
+      us_sex, us_code, us_create_time, 
+      us_update_time)
+    values (#{usId,jdbcType=INTEGER}, #{usEmail,jdbcType=VARCHAR}, #{usName,jdbcType=VARCHAR}, 
+      #{usPassword,jdbcType=VARCHAR}, #{usMoney,jdbcType=DECIMAL}, #{usIdcard,jdbcType=VARCHAR}, 
+      #{usPhone,jdbcType=VARCHAR}, #{usAddress,jdbcType=VARCHAR}, #{usRole,jdbcType=INTEGER}, 
+      #{usSex,jdbcType=VARCHAR}, #{usCode,jdbcType=VARCHAR}, #{usCreateTime,jdbcType=TIMESTAMP}, 
+      #{usUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="usId != null" >
+        us_id,
+      </if>
+      <if test="usEmail != null" >
+        us_email,
+      </if>
+      <if test="usName != null" >
+        us_name,
+      </if>
+      <if test="usPassword != null" >
+        us_password,
+      </if>
+      <if test="usMoney != null" >
+        us_money,
+      </if>
+      <if test="usIdcard != null" >
+        us_idcard,
+      </if>
+      <if test="usPhone != null" >
+        us_phone,
+      </if>
+      <if test="usAddress != null" >
+        us_address,
+      </if>
+      <if test="usRole != null" >
+        us_role,
+      </if>
+      <if test="usSex != null" >
+        us_sex,
+      </if>
+      <if test="usCode != null" >
+        us_code,
+      </if>
+      <if test="usCreateTime != null" >
+        us_create_time,
+      </if>
+      <if test="usUpdateTime != null" >
+        us_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="usId != null" >
+        #{usId,jdbcType=INTEGER},
+      </if>
+      <if test="usEmail != null" >
+        #{usEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="usName != null" >
+        #{usName,jdbcType=VARCHAR},
+      </if>
+      <if test="usPassword != null" >
+        #{usPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="usMoney != null" >
+        #{usMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="usIdcard != null" >
+        #{usIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="usPhone != null" >
+        #{usPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="usAddress != null" >
+        #{usAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="usRole != null" >
+        #{usRole,jdbcType=INTEGER},
+      </if>
+      <if test="usSex != null" >
+        #{usSex,jdbcType=VARCHAR},
+      </if>
+      <if test="usCode != null" >
+        #{usCode,jdbcType=VARCHAR},
+      </if>
+      <if test="usCreateTime != null" >
+        #{usCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usUpdateTime != null" >
+        #{usUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.User" >
+    update user
+    <set >
+      <if test="usEmail != null" >
+        us_email = #{usEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="usName != null" >
+        us_name = #{usName,jdbcType=VARCHAR},
+      </if>
+      <if test="usPassword != null" >
+        us_password = #{usPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="usMoney != null" >
+        us_money = #{usMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="usIdcard != null" >
+        us_idcard = #{usIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="usPhone != null" >
+        us_phone = #{usPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="usAddress != null" >
+        us_address = #{usAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="usRole != null" >
+        us_role = #{usRole,jdbcType=INTEGER},
+      </if>
+      <if test="usSex != null" >
+        us_sex = #{usSex,jdbcType=VARCHAR},
+      </if>
+      <if test="usCode != null" >
+        us_code = #{usCode,jdbcType=VARCHAR},
+      </if>
+      <if test="usCreateTime != null" >
+        us_create_time = #{usCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usUpdateTime != null" >
+        us_update_time = #{usUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where us_id = #{usId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.User" >
+    update user
+    set us_email = #{usEmail,jdbcType=VARCHAR},
+      us_name = #{usName,jdbcType=VARCHAR},
+      us_password = #{usPassword,jdbcType=VARCHAR},
+      us_money = #{usMoney,jdbcType=DECIMAL},
+      us_idcard = #{usIdcard,jdbcType=VARCHAR},
+      us_phone = #{usPhone,jdbcType=VARCHAR},
+      us_address = #{usAddress,jdbcType=VARCHAR},
+      us_role = #{usRole,jdbcType=INTEGER},
+      us_sex = #{usSex,jdbcType=VARCHAR},
+      us_code = #{usCode,jdbcType=VARCHAR},
+      us_create_time = #{usCreateTime,jdbcType=TIMESTAMP},
+      us_update_time = #{usUpdateTime,jdbcType=TIMESTAMP}
+    where us_id = #{usId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByPhoneAndPwd" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List" />
+  from `user`
+  where us_phone=#{param1} and us_password=#{param2}
+  </select>
+
+  <select id="selectByEmailAndPwd" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from `user`
+    where us_email=#{param1} and us_password=#{param2}
+  </select>
+
+
+</mapper>
