@@ -5,7 +5,7 @@ function register() {
 
 function getCode() {
     var phone = $("#phone").val()
-
+    console.log(phone);
 
     $.ajax({
         url: "/register/getCode.do",
