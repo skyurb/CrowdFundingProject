@@ -66,7 +66,7 @@ public class registerController {
         String userName = req.getParameter("userName");
         String password = req.getParameter("password");
         String reCode = req.getParameter("code");
-        if (code != reCode) {
+        if (!code.equals(reCode)) {
             ResponseUtil.responseFailure(res, "验证码错误codeError", ResponseCode.LOGIN_ERROR_INVALID_PARAMETER);
             return;
         }

@@ -1,8 +1,8 @@
 function register() {
-    var userNumber=$("#phone").val;
-    var userName=$("#name").val;
-    var password=$("#password").val;
-    var code=$("#code").val;
+    var userNumber=$("#phone").val();
+    var userName=$("#name").val();
+    var password=$("#password").val();
+    var code=$("#code").val();
     $.ajax({
         url: "/register//register.do",
         type:"post",
