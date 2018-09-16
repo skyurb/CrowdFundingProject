@@ -156,7 +156,12 @@
             <artifactId>mail</artifactId>
             <version>1.4.7</version>
         </dependency>
-
+        <!--改变数据类型-->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.7.0</version>
+        </dependency>
 
     </dependencies>
 
