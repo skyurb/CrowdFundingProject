@@ -23,4 +23,13 @@ public interface UserMapper {
 
     //根据邮箱号和密码获取用户
     List<User> selectByEmailAndPwd(@Param("param1")String name, @Param("param2")String password);
+
+    //根据邮箱号获取用户
+    User selectByMail(String account);
+
+    //根据手机号获取用户
+    User selectByPhone(String account);
+
+    //根据用户名获取用户
+    User selectByName(String name);
 }

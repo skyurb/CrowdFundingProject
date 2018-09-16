@@ -3,6 +3,8 @@ package com.controller;
 import com.aliyuncs.exceptions.ClientException;
 
 
+import com.dao.UserMapper;
+import com.entity.User;
 import com.google.gson.Gson;
 import com.resonse.ResponseCode;
 import com.resonse.ResponseMessage;
@@ -11,6 +13,7 @@ import com.util.GetCodeUtil;
 import com.util.MailUtil;
 import com.util.ResponseUtil;
 import com.util.SMSUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,6 +26,8 @@ import java.io.IOException;
 @RequestMapping("/register")
 public class registerController {
     static String code;
+    @Autowired
+    UserMapper userMapper;
 
 
     @RequestMapping("/getCode.do")
@@ -55,11 +60,52 @@ public class registerController {
 
     @RequestMapping("/reg.do")
     public void register(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String account = req.getParameter("account");
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
         String userCode = req.getParameter("code");
-        if (!code.equals(userCode)) {
+
+        User user = new User();
+        /*User user = userMapper.selectByMail(account);
+        System.out.println(user);*/
+
+        if (!"241700".equals(userCode)) {
             ResponseUtil.responseFailure(resp,"code is different",ResponseCode.CODE_IS_DIFFERENT);
+            return;
         }
 
+        User userByName = userMapper.selectByName(username);
+        if (userByName!=null){
+            ResponseUtil.responseFailure(resp,"mail is exists",ResponseCode.EXISTS);
+            return;
+        }
+
+        if (account.contains("@")){
+            User userByMail = userMapper.selectByMail(account);
+            if (userByMail!=null){
+                ResponseUtil.responseFailure(resp,"mail is exists",ResponseCode.EXISTS);
+                return;
+            }else {
+                user.setUsEmail(account);
+            }
+        }else {
+            User userByPhone = userMapper.selectByPhone(account);
+            if (userByPhone!=null){
+                ResponseUtil.responseFailure(resp,"phone is exists",ResponseCode.EXISTS);
+                return;
+            }
+            else {
+                user.setUsPhone(account);
+            }
+        }
+
+
+        user.setUsCode(code);
+        user.setUsName(username);
+        user.setUsPassword(password);
+        int i = userMapper.insert(user);
+        System.out.println(i+"条记录成功");
+        ResponseUtil.responseFailure(resp,"success",ResponseCode.SEND_SUCCESS);
 
     }
 

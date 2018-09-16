@@ -199,6 +199,29 @@
     from `user`
     where us_email=#{param1} and us_password=#{param2}
   </select>
+  
+  <select id="selectByMail" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List"/>
+    from user
+    where us_email=#{account};
+  </select>
+
+  <select id="selectByPhone" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from user
+    where us_phone=#{account};
+  </select>
+
+  <select id="selectByName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from user
+    where us_name=#{name};
+  </select>
+
+
 
 
 </mapper>

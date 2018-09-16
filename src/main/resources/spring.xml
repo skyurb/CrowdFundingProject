@@ -13,9 +13,9 @@
 
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-        <property name="url" value="jdbc:mysql://localhost:3306/crowd_funding"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/crowd_funding?zeroDateTimeBehavior=convertToNull"></property>
         <property name="username" value="root"></property>
-        <property name="password" value="2561"></property>
+        <property name="password" value="lr2417"></property>
     </bean>
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

@@ -19,5 +19,7 @@ public class ResponseCode {
     public static final int SEND_SUCCESS=3;
     //验证码不对应
     public static final int CODE_IS_DIFFERENT=4;
+    //账号已存在
+    public static final int EXISTS=5;
 
 }
