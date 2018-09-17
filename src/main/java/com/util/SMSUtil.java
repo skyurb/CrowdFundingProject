@@ -36,7 +36,7 @@ public class SMSUtil {
 
         Thread.sleep(3000L);
 
-        //查明细
+        /*//查明细
         if(response.getCode() != null && response.getCode().equals("OK")) {
             QuerySendDetailsResponse querySendDetailsResponse = querySendDetails(response.getBizId());
             System.out.println("短信明细查询接口返回数据----------------");
@@ -57,7 +57,7 @@ public class SMSUtil {
             }
             System.out.println("TotalCount=" + querySendDetailsResponse.getTotalCount());
             System.out.println("RequestId=" + querySendDetailsResponse.getRequestId());
-        }
+        }*/
 
         return code;
     }
@@ -97,7 +97,7 @@ public class SMSUtil {
     }
 
 
-    private static QuerySendDetailsResponse querySendDetails(String bizId) throws ClientException {
+   /* private static QuerySendDetailsResponse querySendDetails(String bizId) throws ClientException {
 
         //可自助调整超时时间
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
@@ -126,7 +126,7 @@ public class SMSUtil {
         QuerySendDetailsResponse querySendDetailsResponse = acsClient.getAcsResponse(request);
 
         return querySendDetailsResponse;
-    }
+    }*/
 
 
 }

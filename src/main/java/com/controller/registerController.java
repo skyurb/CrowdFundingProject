@@ -5,11 +5,12 @@ import com.aliyuncs.exceptions.ClientException;
 
 import com.dao.UserMapper;
 import com.entity.User;
-import com.google.gson.Gson;
+//import com.google.gson.Gson;
 import com.resonse.ResponseCode;
-import com.resonse.ResponseMessage;
+//import com.resonse.ResponseMessage;
 import com.util.*;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,17 +22,20 @@ import java.io.IOException;
 
 @Controller
 @RequestMapping("/register")
+@Slf4j
 public class registerController {
     static String code;
+    static long createTime;
+    static String account;
     @Autowired
     UserMapper userMapper;
 
 
     @RequestMapping("/getCode.do")
     public void getCode(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String account = req.getParameter("account");
+        account = req.getParameter("account");
         code = GetCodeUtil.getCode();
-
+        createTime =System.currentTimeMillis()+5*60*1000;
 
         try {
             if (account.contains("@")) {
@@ -44,7 +48,7 @@ public class registerController {
         } catch (ClientException e) {
             ResponseUtil.responseSuccess(resp, "", 404);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            log.error(e.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,15 +61,22 @@ public class registerController {
 
     @RequestMapping("/reg.do")
     public void register(HttpServletRequest req, HttpServletResponse resp) throws IOException, InstantiationException, IllegalAccessException {
-        String account = req.getParameter("account");
+        long nowTime = System.currentTimeMillis();
+        if (nowTime>createTime){
+            code=null;
+            ResponseUtil.responseFailure(resp,"code is overTime",ResponseCode.CODE_IS_DIFFERENT);
+            return;
+        }
+
+
+        String usAccount = req.getParameter("account");
         String usName = req.getParameter("usName");
-        String usPassword = req.getParameter("usPassword");
         String usCode = req.getParameter("usCode");
 
         /*User user = new User();*/
         /*User user = userMapper.selectByMail(account);
         System.out.println(user);*/
-        if (!code.equals(usCode)) {
+        if (!code.equals(usCode)||!usAccount.equals(account)) {
             ResponseUtil.responseFailure(resp,"code is different",ResponseCode.CODE_IS_DIFFERENT);
             return;
         }
