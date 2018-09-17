@@ -21,14 +21,8 @@ function register() {
             }
             alert(resp.error);
         }
-
     })
-
-
-
-
 }
-
 function getCode() {
     var phone = $("#phone").val()
     console.log(phone);
@@ -46,6 +40,5 @@ function getCode() {
             }
             alert(resp.error);
         }
-
     })
 }

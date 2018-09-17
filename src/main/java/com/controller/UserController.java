@@ -25,7 +25,6 @@ import java.util.regex.Pattern;
 public class UserController {
     @Autowired
     UserService userService;
-
     @RequestMapping("/login.do")
     public void checkLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String username = request.getParameter("username");
@@ -48,7 +47,6 @@ public class UserController {
                     String s = new Gson().toJson(users.get(0));
                     ResponseUtil.responseSuccess(response,s,ResponseCode.LOGIN_SUCCESS);
                 }
-
             } else {
                 List<User> users = userService.selectByPhoneAndPwd(username, password);
                 if (users.get(0)==null){
@@ -68,8 +66,6 @@ public class UserController {
             return;
         }
     }
-
-
     public boolean checkEmail(String username) {
         String RULE_EMAIL = "^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z0-9]+$";
         //正则表达式的模式
@@ -78,6 +74,4 @@ public class UserController {
         Matcher m = p.matcher(username);
         return m.find();
     }
-
-
 }

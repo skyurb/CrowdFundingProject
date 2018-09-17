@@ -1,7 +1,5 @@
 package com.controller;
-
 import com.aliyuncs.exceptions.ClientException;
-
 import com.entity.User;
 import com.resonse.ResponseCode;
 import com.service.UserService;
@@ -12,7 +10,6 @@ import org.apache.commons.mail.EmailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,17 +19,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 @Controller
 @RequestMapping("/register")
 @Slf4j
 public class registerController {
-
     @Autowired
     UserService userService;
-   // static String code;
-
-
     @RequestMapping("/getCode.do")
     public void getCode(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String phoneNumber = req.getParameter("phoneNumber");
@@ -56,7 +48,6 @@ public class registerController {
                 long current = System.currentTimeMillis();
                 long expireTime=current+1000*60*5;
                 req.getSession().setAttribute("codeExpireTime",expireTime);
-
             }
         } else {
             List<User> byPhone = userService.findByPhone(phoneNumber);
@@ -79,10 +70,7 @@ public class registerController {
                 req.getSession().setAttribute("codeExpireTime",expireTime);
             }
         }
-
     }
-
-
     @RequestMapping("/register.do")
     public void register(HttpServletRequest req, HttpServletResponse res) throws IOException {
         User user = new User();
