@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.resonse.ResponseCode;
 import com.service.UserService;
 import com.util.ResponseUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import java.util.regex.Pattern;
 
 @Controller
 @RequestMapping("/user")
+@Slf4j
 public class UserController {
     @Autowired
     UserService userService;
@@ -61,6 +63,7 @@ public class UserController {
                 }
             }
         } catch (Exception e) {
+            log.error("{error}",e);
             ResponseUtil.responseFailure(response, "server error", ResponseCode.LOGIN_ERROR_INVALID_PARAMETER);
             return;
         }

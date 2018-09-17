@@ -20,7 +20,12 @@
         <property name="suffix" value=".jsp"/>
     </bean>
     <!--配置拦截器-->
-    <!--<mvc:interceptors>-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**/*.do"/>
+            <bean class="com.interceptor.EncodingInterceptor"></bean>
+        </mvc:interceptor>
+
     <!--<mvc:interceptor>-->
         <!--&lt;!&ndash;配置拦截器拦截路径&ndash;&gt;-->
         <!--<mvc:mapping path="/**/*.do"/>-->
@@ -30,5 +35,5 @@
         <!--&lt;!&ndash;配置加载的类&ndash;&gt;-->
         <!--<bean class="com.interceptor.LoginInterceptor"></bean>-->
     <!--</mvc:interceptor>-->
-    <!--</mvc:interceptors>-->
+    </mvc:interceptors>
 </beans>

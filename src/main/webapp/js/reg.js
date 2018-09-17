@@ -4,7 +4,7 @@ function register() {
     var password=$("#password").val();
     var code=$("#code").val();
     $.ajax({
-        url: "/register//register.do",
+        url: "/register/register.do",
         type:"post",
         data:{
             userNumber:userNumber,
@@ -16,7 +16,8 @@ function register() {
         success:function (resp) {
             console.log(resp)
             if (resp.isSuccess){
-                alert(resp.content);
+                window.location.href="/login.html";
+                return;
             }
             alert(resp.error);
         }
@@ -40,7 +41,10 @@ function getCode() {
         },
         dataType:"json",
         success:function (resp) {
-            alert("发送成功");
+            if (resp.isSuccess){
+                alert("发送成功");
+            }
+            alert(resp.error);
         }
 
     })
