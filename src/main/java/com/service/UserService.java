@@ -81,4 +81,9 @@ public class UserService {
         return insert;
     }
 
+    public User selectById(int id){
+        User user = userMapper.selectByPrimaryKey(id);
+        return user;
+    }
+
 }

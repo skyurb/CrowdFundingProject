@@ -6,6 +6,7 @@ import com.service.UserService;
 import com.util.ResponseUtil;
 import com.util.SendMailUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.mail.EmailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,9 @@ public class registerController {
     @RequestMapping("/getCode.do")
     public void getCode(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String phoneNumber = req.getParameter("phoneNumber");
+        if (StringUtils.isEmpty(phoneNumber)){
+            ResponseUtil.responseFailure(res, "手机号或邮箱为空", ResponseCode.LOGIN_ERROR_INVALID_PARAMETER);
+        }
         //检查账号类型
         if (checkEmail(phoneNumber)) {
             List<User> byEmailName = userService.findByEmailName(phoneNumber);
@@ -48,6 +52,7 @@ public class registerController {
                 long current = System.currentTimeMillis();
                 long expireTime=current+1000*60*5;
                 req.getSession().setAttribute("codeExpireTime",expireTime);
+               ResponseUtil.responseSuccess(res,code,1);
             }
         } else {
             List<User> byPhone = userService.findByPhone(phoneNumber);
@@ -68,6 +73,7 @@ public class registerController {
                 long current = System.currentTimeMillis();
                 long expireTime=current+1000*60*5;
                 req.getSession().setAttribute("codeExpireTime",expireTime);
+                ResponseUtil.responseSuccess(res,code,1);
             }
         }
     }
@@ -78,6 +84,7 @@ public class registerController {
         String userName = req.getParameter("userName");
         String password = req.getParameter("password");
         String reCode = req.getParameter("code");
+
         //校验时长
         HttpSession session = req.getSession();
         Long expireTime = (Long) session.getAttribute("codeExpireTime");
@@ -99,6 +106,7 @@ public class registerController {
             user.setUsName(userName);
             user.setUsPassword(password);
             user.setUsCreateTime(new Date());
+            user.setUsRole(1);
             int insert = userService.insert(user);
             ResponseUtil.responseSuccess(res, "注册成功" + insert, 2);
         } else {
@@ -106,6 +114,7 @@ public class registerController {
             user.setUsName(userName);
             user.setUsPassword(password);
             user.setUsCreateTime(new Date());
+            user.setUsRole(1);
             int insert = userService.insert(user);
             ResponseUtil.responseSuccess(res, "注册成功" + insert, 2);
         }

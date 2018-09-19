@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.ProjectsMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.Projects" >
+    <id column="ps_id" property="psId" jdbcType="INTEGER" />
+    <result column="ps_us_id" property="psUsId" jdbcType="INTEGER" />
+    <result column="ps_cust_name" property="psCustName" jdbcType="VARCHAR" />
+    <result column="ps_cust_phone" property="psCustPhone" jdbcType="VARCHAR" />
+    <result column="ps_cust_address" property="psCustAddress" jdbcType="VARCHAR" />
+    <result column="ps_pst_id" property="psPstId" jdbcType="INTEGER" />
+    <result column="ps_file" property="psFile" jdbcType="VARCHAR" />
+    <result column="ps_name" property="psName" jdbcType="VARCHAR" />
+    <result column="ps_goal" property="psGoal" jdbcType="VARCHAR" />
+    <result column="ps_address" property="psAddress" jdbcType="VARCHAR" />
+    <result column="ps_money" property="psMoney" jdbcType="DECIMAL" />
+    <result column="ps_days" property="psDays" jdbcType="INTEGER" />
+    <result column="ps_video" property="psVideo" jdbcType="VARCHAR" />
+    <result column="ps_story" property="psStory" jdbcType="VARCHAR" />
+    <result column="ps_support" property="psSupport" jdbcType="VARCHAR" />
+    <result column="ps_repay" property="psRepay" jdbcType="VARCHAR" />
+    <result column="ps_aboutme" property="psAboutme" jdbcType="VARCHAR" />
+    <result column="ps_type" property="psType" jdbcType="INTEGER" />
+    <result column="ps_starttime" property="psStarttime" jdbcType="DATE" />
+    <result column="ps_endtime" property="psEndtime" jdbcType="DATE" />
+    <result column="ps_getmoney" property="psGetmoney" jdbcType="DECIMAL" />
+    <result column="ps_getpeople" property="psGetpeople" jdbcType="INTEGER" />
+    <result column="ps_auditor" property="psAuditor" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ps_id, ps_us_id, ps_cust_name, ps_cust_phone, ps_cust_address, ps_pst_id, ps_file, 
+    ps_name, ps_goal, ps_address, ps_money, ps_days, ps_video, ps_story, ps_support, 
+    ps_repay, ps_aboutme, ps_type, ps_starttime, ps_endtime, ps_getmoney, ps_getpeople, 
+    ps_auditor
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from projects
+    where ps_id = #{psId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from projects
+    where ps_id = #{psId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.Projects" >
+    insert into projects (ps_id, ps_us_id, ps_cust_name, 
+      ps_cust_phone, ps_cust_address, ps_pst_id, 
+      ps_file, ps_name, ps_goal, 
+      ps_address, ps_money, ps_days, 
+      ps_video, ps_story, ps_support, 
+      ps_repay, ps_aboutme, ps_type, 
+      ps_starttime, ps_endtime, ps_getmoney, 
+      ps_getpeople, ps_auditor)
+    values (#{psId,jdbcType=INTEGER}, #{psUsId,jdbcType=INTEGER}, #{psCustName,jdbcType=VARCHAR}, 
+      #{psCustPhone,jdbcType=VARCHAR}, #{psCustAddress,jdbcType=VARCHAR}, #{psPstId,jdbcType=INTEGER}, 
+      #{psFile,jdbcType=VARCHAR}, #{psName,jdbcType=VARCHAR}, #{psGoal,jdbcType=VARCHAR}, 
+      #{psAddress,jdbcType=VARCHAR}, #{psMoney,jdbcType=DECIMAL}, #{psDays,jdbcType=INTEGER}, 
+      #{psVideo,jdbcType=VARCHAR}, #{psStory,jdbcType=VARCHAR}, #{psSupport,jdbcType=VARCHAR}, 
+      #{psRepay,jdbcType=VARCHAR}, #{psAboutme,jdbcType=VARCHAR}, #{psType,jdbcType=INTEGER}, 
+      #{psStarttime,jdbcType=DATE}, #{psEndtime,jdbcType=DATE}, #{psGetmoney,jdbcType=DECIMAL}, 
+      #{psGetpeople,jdbcType=INTEGER}, #{psAuditor,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.Projects" >
+    insert into projects
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="psId != null" >
+        ps_id,
+      </if>
+      <if test="psUsId != null" >
+        ps_us_id,
+      </if>
+      <if test="psCustName != null" >
+        ps_cust_name,
+      </if>
+      <if test="psCustPhone != null" >
+        ps_cust_phone,
+      </if>
+      <if test="psCustAddress != null" >
+        ps_cust_address,
+      </if>
+      <if test="psPstId != null" >
+        ps_pst_id,
+      </if>
+      <if test="psFile != null" >
+        ps_file,
+      </if>
+      <if test="psName != null" >
+        ps_name,
+      </if>
+      <if test="psGoal != null" >
+        ps_goal,
+      </if>
+      <if test="psAddress != null" >
+        ps_address,
+      </if>
+      <if test="psMoney != null" >
+        ps_money,
+      </if>
+      <if test="psDays != null" >
+        ps_days,
+      </if>
+      <if test="psVideo != null" >
+        ps_video,
+      </if>
+      <if test="psStory != null" >
+        ps_story,
+      </if>
+      <if test="psSupport != null" >
+        ps_support,
+      </if>
+      <if test="psRepay != null" >
+        ps_repay,
+      </if>
+      <if test="psAboutme != null" >
+        ps_aboutme,
+      </if>
+      <if test="psType != null" >
+        ps_type,
+      </if>
+      <if test="psStarttime != null" >
+        ps_starttime,
+      </if>
+      <if test="psEndtime != null" >
+        ps_endtime,
+      </if>
+      <if test="psGetmoney != null" >
+        ps_getmoney,
+      </if>
+      <if test="psGetpeople != null" >
+        ps_getpeople,
+      </if>
+      <if test="psAuditor != null" >
+        ps_auditor,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="psId != null" >
+        #{psId,jdbcType=INTEGER},
+      </if>
+      <if test="psUsId != null" >
+        #{psUsId,jdbcType=INTEGER},
+      </if>
+      <if test="psCustName != null" >
+        #{psCustName,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustPhone != null" >
+        #{psCustPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustAddress != null" >
+        #{psCustAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="psPstId != null" >
+        #{psPstId,jdbcType=INTEGER},
+      </if>
+      <if test="psFile != null" >
+        #{psFile,jdbcType=VARCHAR},
+      </if>
+      <if test="psName != null" >
+        #{psName,jdbcType=VARCHAR},
+      </if>
+      <if test="psGoal != null" >
+        #{psGoal,jdbcType=VARCHAR},
+      </if>
+      <if test="psAddress != null" >
+        #{psAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="psMoney != null" >
+        #{psMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="psDays != null" >
+        #{psDays,jdbcType=INTEGER},
+      </if>
+      <if test="psVideo != null" >
+        #{psVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="psStory != null" >
+        #{psStory,jdbcType=VARCHAR},
+      </if>
+      <if test="psSupport != null" >
+        #{psSupport,jdbcType=VARCHAR},
+      </if>
+      <if test="psRepay != null" >
+        #{psRepay,jdbcType=VARCHAR},
+      </if>
+      <if test="psAboutme != null" >
+        #{psAboutme,jdbcType=VARCHAR},
+      </if>
+      <if test="psType != null" >
+        #{psType,jdbcType=INTEGER},
+      </if>
+      <if test="psStarttime != null" >
+        #{psStarttime,jdbcType=DATE},
+      </if>
+      <if test="psEndtime != null" >
+        #{psEndtime,jdbcType=DATE},
+      </if>
+      <if test="psGetmoney != null" >
+        #{psGetmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="psGetpeople != null" >
+        #{psGetpeople,jdbcType=INTEGER},
+      </if>
+      <if test="psAuditor != null" >
+        #{psAuditor,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.Projects" >
+    update projects
+    <set >
+      <if test="psUsId != null" >
+        ps_us_id = #{psUsId,jdbcType=INTEGER},
+      </if>
+      <if test="psCustName != null" >
+        ps_cust_name = #{psCustName,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustPhone != null" >
+        ps_cust_phone = #{psCustPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustAddress != null" >
+        ps_cust_address = #{psCustAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="psPstId != null" >
+        ps_pst_id = #{psPstId,jdbcType=INTEGER},
+      </if>
+      <if test="psFile != null" >
+        ps_file = #{psFile,jdbcType=VARCHAR},
+      </if>
+      <if test="psName != null" >
+        ps_name = #{psName,jdbcType=VARCHAR},
+      </if>
+      <if test="psGoal != null" >
+        ps_goal = #{psGoal,jdbcType=VARCHAR},
+      </if>
+      <if test="psAddress != null" >
+        ps_address = #{psAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="psMoney != null" >
+        ps_money = #{psMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="psDays != null" >
+        ps_days = #{psDays,jdbcType=INTEGER},
+      </if>
+      <if test="psVideo != null" >
+        ps_video = #{psVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="psStory != null" >
+        ps_story = #{psStory,jdbcType=VARCHAR},
+      </if>
+      <if test="psSupport != null" >
+        ps_support = #{psSupport,jdbcType=VARCHAR},
+      </if>
+      <if test="psRepay != null" >
+        ps_repay = #{psRepay,jdbcType=VARCHAR},
+      </if>
+      <if test="psAboutme != null" >
+        ps_aboutme = #{psAboutme,jdbcType=VARCHAR},
+      </if>
+      <if test="psType != null" >
+        ps_type = #{psType,jdbcType=INTEGER},
+      </if>
+      <if test="psStarttime != null" >
+        ps_starttime = #{psStarttime,jdbcType=DATE},
+      </if>
+      <if test="psEndtime != null" >
+        ps_endtime = #{psEndtime,jdbcType=DATE},
+      </if>
+      <if test="psGetmoney != null" >
+        ps_getmoney = #{psGetmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="psGetpeople != null" >
+        ps_getpeople = #{psGetpeople,jdbcType=INTEGER},
+      </if>
+      <if test="psAuditor != null" >
+        ps_auditor = #{psAuditor,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ps_id = #{psId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.Projects" >
+    update projects
+    set ps_us_id = #{psUsId,jdbcType=INTEGER},
+      ps_cust_name = #{psCustName,jdbcType=VARCHAR},
+      ps_cust_phone = #{psCustPhone,jdbcType=VARCHAR},
+      ps_cust_address = #{psCustAddress,jdbcType=VARCHAR},
+      ps_pst_id = #{psPstId,jdbcType=INTEGER},
+      ps_file = #{psFile,jdbcType=VARCHAR},
+      ps_name = #{psName,jdbcType=VARCHAR},
+      ps_goal = #{psGoal,jdbcType=VARCHAR},
+      ps_address = #{psAddress,jdbcType=VARCHAR},
+      ps_money = #{psMoney,jdbcType=DECIMAL},
+      ps_days = #{psDays,jdbcType=INTEGER},
+      ps_video = #{psVideo,jdbcType=VARCHAR},
+      ps_story = #{psStory,jdbcType=VARCHAR},
+      ps_support = #{psSupport,jdbcType=VARCHAR},
+      ps_repay = #{psRepay,jdbcType=VARCHAR},
+      ps_aboutme = #{psAboutme,jdbcType=VARCHAR},
+      ps_type = #{psType,jdbcType=INTEGER},
+      ps_starttime = #{psStarttime,jdbcType=DATE},
+      ps_endtime = #{psEndtime,jdbcType=DATE},
+      ps_getmoney = #{psGetmoney,jdbcType=DECIMAL},
+      ps_getpeople = #{psGetpeople,jdbcType=INTEGER},
+      ps_auditor = #{psAuditor,jdbcType=INTEGER}
+    where ps_id = #{psId,jdbcType=INTEGER}
+  </update>
+  <!--根据种类查询-->
+  <select id="selectProjectByType" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from projects where ps_pst_id=#{type} and ps_type in (3,4)
+  </select>
+  <!--分页查询全部项目-->
+  <select id="selectAllProjectByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+     from projects where ps_type in (3,4) limit #{first},#{second}
+  </select>
+  <!--查询我的项目-->
+  <select id="myAllProject" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from projects where ps_us_id=#{id}
+  </select>
+  <!--我的进行中的项目-->
+  <select id="myBeginProject" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from projects where ps_type=2 and ps_us_id=#{id}
+  </select>
+
+
+</mapper>
